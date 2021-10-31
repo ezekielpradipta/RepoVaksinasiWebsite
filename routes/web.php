@@ -8,6 +8,9 @@ Auth::routes();
 Route::get('/', function(){
 	return view('depan');
 })->name('site.index');
+Route::get('/cekstatus', function(){
+	return view('cekstatus');
+})->name('site.cekstatus');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/config', 'App\Http\Controllers\ConfigController@index')->name('config');
