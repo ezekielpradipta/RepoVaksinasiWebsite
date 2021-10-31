@@ -19,7 +19,7 @@ class CreateVaksinsTable extends Migration
             $table->integer('vaksin_stock')->default(0);
             $table->integer('vaksin_dosis')->nullable();
             $table->string('vaksin_sesi');
-            $table->enum('vaksin_status',['1','0'])->default('1');
+            $table->enum('vaksin_status',['1','0'])->default('0');
             $table->timestamps();
         });
     }
