@@ -9,7 +9,12 @@
 				<a href="{{ route('home') }}" title="Dashboard"><i class="fa fa-dashboard"></i> <span>
 						Dashboard</span></a>
 			</li>
-
+			@if (Auth::user()->can('root-dev', ''))
+			<li class="{{ Request::segment(1) === 'vaksin' ? 'active' : null }}">
+				<a href="{{ route('vaksin') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
+						Data Vaksin</span></a>
+			</li>
+			@endif
 			@if(Request::segment(1) === 'profile')
 
 			<li class="{{ Request::segment(1) === 'profile' ? 'active' : null }}">

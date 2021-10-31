@@ -19,7 +19,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Profile'], function (){
 	Route::put('/profile/update/password/{id}', 'ProfileController@updatePassword')->name('profile.update.password');
 	Route::put('/profile/update/avatar/{id}', 'ProfileController@updateAvatar')->name('profile.update.avatar');
 });
-
+Route::group(['namespace' => 'App\Http\Controllers\Vaksin'], function (){ 
+	Route::get('/vaksin', 'VaksinController@index')->name('vaksin');
+});
 Route::group(['namespace' => 'App\Http\Controllers\Error'], function (){ 
 	Route::get('/unauthorized', 'ErrorController@unauthorized')->name('unauthorized');
 });
