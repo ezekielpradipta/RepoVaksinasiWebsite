@@ -25,7 +25,7 @@ class CreatePasiensTable extends Migration
             $table->string('pekerjaan');
             $table->string('nohp');
             $table->unsignedBigInteger('vaksin_id');
-            $table->integer('confirmed')->default(Pasien::PASIEN_STATUS_NOT_CONFIRMED);
+            $table->enum('validasi',['1','0'])->default('0');
             $table->timestamps();
             $table->foreign('vaksin_id')->references('id')->on('vaksins')
                     ->onDelete('cascade')

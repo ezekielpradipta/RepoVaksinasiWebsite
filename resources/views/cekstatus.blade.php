@@ -83,10 +83,6 @@
                             <label for="nik">NIK</label>
                             <input type="text" class="form-control" id="nik" placeholder="Masukan Nomor NIK KTP Anda">
                           </div>
-                          <div class="form-group">
-                            <label for="Nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap Anda">
-                          </div>
                           <div class="checkbox">
                             <label>
                               <input type="checkbox"> Check me out

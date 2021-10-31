@@ -80,50 +80,87 @@
                     <hr class="style-three">
                     <form>
                         <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input type="text" class="form-control" id="nik" placeholder="Masukan Nomor NIK KTP Anda">
+                            <label for="nik">NIK KTP</label>
+                            <input type="text" class="form-control @error('nik') is-invalid @enderror" 
+                            id="nik" name="nik" placeholder="Masukan Nomor NIK KTP Anda" required>
+
+                            @error('nik')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="Nama">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" placeholder="Masukan Nama Lengkap Anda">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" 
+                            id="nama" name="nama" placeholder="Masukan Nama Lengkap Anda" required>
+
+                            @error('nama')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="tempatlahir">Tempat Lahir</label>
-                            <input type="text" class="form-control" id="tempatlahir" placeholder="Tempat Lahir">
+                            <input type="text" class="form-control @error('tempatlahir') is-invalid @enderror" 
+                            id="tempatlahir" name="tempatlahir" placeholder="Tempat Lahir" required>
+
+                            @error('tempatlahir')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="tgllahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgllahir">
+                            <input type="date" class="form-control @error('tgllahir') is-invalid @enderror" 
+                            id="tgllahir" name="tgllahir" required>
+
+                            @error('tgllahir')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" rows="3" id="alamat"
+                                placeholder="Masukan Alamat Anda" require></textarea>
 
-                            <textarea class="form-control" rows="3" id="alamat"
-                                placeholder="Masukan Alamat Anda"></textarea>
+                            @error('alamat')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control" id="pekerjaan" placeholder="Pekerjaan">
+                            <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" 
+                            id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" required>
+
+                            @error('pekerjaan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="nohp">Nomor Handphone/Whatsapp</label>
-                            <input type="text" class="form-control" id="nohp"
-                                placeholder="Masukan Nomor Handphone/Whatsapp Anda">
+                            <input type="text" class="form-control @error('nohp') is-invalid @enderror" 
+                            id="nohp" name="nohp" placeholder="Masukan Nomor Handphone/Whatsapp Anda" required>
+
+                            @error('nohp')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="jenisvaksin">Jenis Vaksin</label>
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="namavaksin"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Pilih Jenis Vaksin
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="#">Sinovac Dosis 1</a></li>
-                                    <li><a href="#">Astra Dosis 2</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <label for="">Sesi Vaksin</label>
+                        <input type="radio" name="vaksin_sesi" value="1" id="vaksin_sesi1">08:00 - 10:00 WIB
+                        <input type="radio" name="vaksin_sesi" value="2" id="vaksin_sesi2">10:00 - 12:00 WIB
+                    </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Check me out
