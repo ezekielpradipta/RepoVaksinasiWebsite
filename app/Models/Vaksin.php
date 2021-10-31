@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vaksin extends Model
 {
-    protected $table = 'vaksin';
+    protected $table = 'vaksins';
 
-    protected $fillable = ['vaksin_stock', 'vaksin_dosis', 'vaksin_sesi', 'vaksin_status'];
+    protected $fillable = ['vaksin_nama','vaksin_stock', 'vaksin_dosis', 'vaksin_sesi', 'vaksin_status'];
 
     public function pasien()
     {

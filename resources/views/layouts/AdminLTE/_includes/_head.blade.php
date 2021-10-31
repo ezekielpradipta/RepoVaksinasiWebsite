@@ -36,10 +36,14 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <!-- CSS Custom -->
 <link rel="stylesheet" href="{{ asset('assets/custom/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 <!-- jQuery 3 -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <script src="{{ asset('assets/adminlte/bower_components/jquery/dist/jquery.min.js') }}"></script>
 <!-- MAskMoney -->
 <script src="{{ asset('assets/plugins/maskMoney/jquery.maskMoney.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <style>
         .link_menu_page {
                 color: #222d32;
@@ -58,3 +62,4 @@
         }
 </style>
 @yield('layout_css')
+@stack('scripts')

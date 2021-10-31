@@ -21,6 +21,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Profile'], function (){
 });
 Route::group(['namespace' => 'App\Http\Controllers\Vaksin'], function (){ 
 	Route::get('/vaksin', 'VaksinController@index')->name('vaksin');
+	Route::post('vaksin/tambah','VaksinController@store')->name('vaksin.tambah');
+	Route::get('vaksin/{id}/edit','VaksinController@edit')->name('vaksin.edit');
+	Route::delete('vaksin/tambah/{id}','VaksinController@destroy')->name('vaksin.destroy');
 });
 Route::group(['namespace' => 'App\Http\Controllers\Error'], function (){ 
 	Route::get('/unauthorized', 'ErrorController@unauthorized')->name('unauthorized');
