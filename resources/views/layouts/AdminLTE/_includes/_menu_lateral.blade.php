@@ -1,14 +1,15 @@
 <aside class="main-sidebar">
 	<section class="sidebar">
 		<ul class="sidebar-menu" data-widget="tree">
-			<li class="header" style="color:#fff;"> MAIN MENU <i class="fa fa-level-down"></i></li>  
+			<li class="header" style="color:#fff;"> MAIN MENU <i class="fa fa-level-down"></i></li>
 			<li class="
 						{{ Request::segment(1) === null ? 'active' : null }}
 						{{ Request::segment(1) === 'home' ? 'active' : null }}
 					  ">
-				<a href="{{ route('home') }}" title="Dashboard"><i class="fa fa-dashboard"></i> <span> Dashboard</span></a>
+				<a href="{{ route('home') }}" title="Dashboard"><i class="fa fa-dashboard"></i> <span>
+						Dashboard</span></a>
 			</li>
-			
+
 			@if(Request::segment(1) === 'profile')
 
 			<li class="{{ Request::segment(1) === 'profile' ? 'active' : null }}">
@@ -16,6 +17,13 @@
 			</li>
 
 			@endif
+			<li class="treeview
+				{{ Request::segment(1) === 'config' ? 'active menu-open' : null }}
+				{{ Request::segment(1) === 'user' ? 'active menu-open' : null }}
+				{{ Request::segment(1) === 'role' ? 'active menu-open' : null }}
+			">
+
+			</li>
 			<li class="treeview 
 				{{ Request::segment(1) === 'config' ? 'active menu-open' : null }}
 				{{ Request::segment(1) === 'user' ? 'active menu-open' : null }}
@@ -30,12 +38,13 @@
 				</a>
 				<ul class="treeview-menu">
 					@if (Auth::user()->can('root-dev', ''))
-						<li class="{{ Request::segment(1) === 'config' && Request::segment(2) === null ? 'active' : null }}">
-							<a href="{{ route('config') }}" title="App Config">
-								<i class="fa fa-gear"></i> <span> Settings App</span>
-							</a>
-						</li>
-					@endif					
+					<li
+						class="{{ Request::segment(1) === 'config' && Request::segment(2) === null ? 'active' : null }}">
+						<a href="{{ route('config') }}" title="App Config">
+							<i class="fa fa-gear"></i> <span> Settings App</span>
+						</a>
+					</li>
+					@endif
 					<li class="
 						{{ Request::segment(1) === 'user' ? 'active' : null }}
 						{{ Request::segment(1) === 'role' ? 'active' : null }}
@@ -45,7 +54,7 @@
 						</a>
 					</li>
 				</ul>
-			</li>      
+			</li>
 		</ul>
 	</section>
 </aside>
