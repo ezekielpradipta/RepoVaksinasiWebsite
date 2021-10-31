@@ -65,7 +65,7 @@
                     <div class="breadcrumb-container">
                         <ol class="breadcrumb">
                             <li>
-                                <a href="index.html">
+                                <a href="/">
                                     <i class="fa fa-home"></i>
                                 </a>
                             </li>
