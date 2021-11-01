@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="login-box border-right-1">
-                        <a href="#">
+                        <a href="/login">
                             <i class="fa fa-key"></i> Login</a>
                     </div>
                 </div>
@@ -38,6 +38,9 @@
                     <li>
                         <a href="/cekstatus">
                             <i class="fa fa-book"></i> Cek Status Pendaftaran</a>
+                    </li>
+                    <li class="icon">
+                        <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
                     </li>
                 </ul>
             </div>
@@ -157,10 +160,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="">Sesi Vaksin</label>
-                        <input type="radio" name="vaksin_sesi" value="1" id="vaksin_sesi1">08:00 - 10:00 WIB
-                        <input type="radio" name="vaksin_sesi" value="2" id="vaksin_sesi2">10:00 - 12:00 WIB
-                    </div>
+                            <label for="">Sesi Vaksin</label>
+                            <input type="radio" name="vaksin_sesi" value="1" id="vaksin_sesi1">08:00 - 10:00 WIB
+                            <input type="radio" name="vaksin_sesi" value="2" id="vaksin_sesi2">10:00 - 12:00 WIB
+                        </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Check me out

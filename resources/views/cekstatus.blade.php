@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="login-box border-right-1">
-                        <a href="#">
+                        <a href="/login">
                             <i class="fa fa-key"></i> Login</a>
                     </div>
                 </div>
@@ -38,6 +38,9 @@
                     <li>
                         <a href="/cekstatus">
                             <i class="fa fa-book"></i> Cek Status Pendaftaran</a>
+                    </li>
+                    <li class="icon">
+                        <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
                     </li>
                 </ul>
             </div>
@@ -80,9 +83,27 @@
                     <hr class="style-three">
                         <form>
                           <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input type="text" class="form-control" id="nik" placeholder="Masukan Nomor NIK KTP Anda">
+                            <label for="nik">NIK KTP</label>
+                            <input type="text" class="form-control @error('nik') is-invalid @enderror" 
+                            id="nik" name="nik" placeholder="Masukan Nomor NIK KTP Anda" required>
+
+                            @error('nik')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                           </div>
+                          <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" 
+                            id="nama" name="nama" placeholder="Masukan Nama Lengkap Anda" required>
+
+                            @error('nama')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                           <div class="checkbox">
                             <label>
                               <input type="checkbox"> Check me out

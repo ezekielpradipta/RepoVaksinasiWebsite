@@ -14,6 +14,10 @@
 				<a href="{{ route('vaksin') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
 						Data Vaksin</span></a>
 			</li>
+			<li class="{{ Request::segment(1) === 'pasien' ? 'active' : null }}">
+				<a href="{{ route('pasien') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
+						Data Pasien</span></a>
+			</li>
 			@endif
 			@if(Request::segment(1) === 'profile')
 

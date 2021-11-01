@@ -28,6 +28,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Vaksin'], function (){
 	Route::get('vaksin/{id}/edit','VaksinController@edit')->name('vaksin.edit');
 	Route::delete('vaksin/tambah/{id}','VaksinController@destroy')->name('vaksin.destroy');
 });
+
+Route::group(['namespace' => 'App\Http\Controllers\Pasien'], function (){ 
+	Route::get('/pasien', 'PasienController@index')->name('pasien');
+	Route::post('pasien/tambah','PasienController@store')->name('pasien.tambah');
+	Route::get('pasien/{id}/edit','PasienController@edit')->name('pasien.edit');
+	Route::delete('pasien/tambah/{id}','PasienController@destroy')->name('pasien.destroy');
+});
 Route::group(['namespace' => 'App\Http\Controllers\Error'], function (){ 
 	Route::get('/unauthorized', 'ErrorController@unauthorized')->name('unauthorized');
 });
