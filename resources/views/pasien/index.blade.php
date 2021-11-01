@@ -134,17 +134,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="vaksin_id">jenis vaksin</label>
-                            <input type="text" class="form-control @error('vaksin_id') is-invalid @enderror" 
-                            id="vaksin_id" name="vaksin_id" placeholder="Nomor Handphone/Whatsapp" readonly>
-
-                            @error('vaksin_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                         <label for="validasi">status</label>
                         <select id="validasi" name="validasi" class="form-control">
                             <option value="0">Belum Vaksin</option>
@@ -232,11 +221,10 @@
                         $('#nik').val(data.nik);
                         $('#nama').val(data.nama);
                         $('#tempatlahir').val(data.tempatlahir);
-                        $('#tgllahir').val(tgllahir);
+                        $('#tgllahir').val(data.tgllahir);
                         $('#alamat').val(data.alamat);
                         $('#pekerjaan').val(data.pekerjaan);
                         $('#nohp').val(data.nohp);
-                        $('#vaksin_id').val(data.vaksin_id);
                         $('#validasi').val(data.validasi);
                      }
                   });          
