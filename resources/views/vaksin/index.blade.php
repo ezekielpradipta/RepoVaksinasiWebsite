@@ -120,12 +120,12 @@
                             console.log(data);
                             $('#form').trigger("reset");
                             $('#modal-default').modal('hide');
-                            Command: swal("Sukses", "Berhasil menambahkan Data Angkatan", "success");
+                            Command: swal("Sukses", "Berhasil Memperbaharui Data Vaksin", "success");
                             table.draw();
                         },
                         error: function (data) {
                             console.log(data);
-                            Command: swal("Gagal", "Gagal menambahkan Data Angkatan", "error");
+                            Command: swal("Gagal", "Gagal Memperbaharui Data Vaksin", "error");
                             
                             $('#saveBtn').html('Save Changes');
                         }

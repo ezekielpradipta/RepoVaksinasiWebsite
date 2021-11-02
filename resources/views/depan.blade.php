@@ -81,7 +81,8 @@
                         Formulir Pendaftaran vaksinasi
                     </div>
                     <hr class="style-three">
-                    <form>
+                    <form method="post" id="form" name="form" enctype="multipart/form-data"
+                    @csrf>
                         <div class="form-group">
                             <label for="nik">NIK KTP</label>
                             <input type="text" class="form-control @error('nik') is-invalid @enderror" 
@@ -160,16 +161,27 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="">Sesi Vaksin</label>
-                            <input type="radio" name="vaksin_sesi" value="1" id="vaksin_sesi1">08:00 - 10:00 WIB
-                            <input type="radio" name="vaksin_sesi" value="2" id="vaksin_sesi2">10:00 - 12:00 WIB
+                            <label for="">Jenis Vaksin</label>
+                            <br></br>
+                            <input type="radio" name="vaksin_sesi" value="1" id="vaksin_id">Sinovac Dosis 1
+                            <p></p>
+                            <input type="radio" name="vaksin_sesi" value="2" id="vaksin_id">Sinovac Dosis 2
+                            <p></p>
+                            <input type="radio" name="vaksin_sesi" value="3" id="vaksin_id">AstraZeneca Dosis 1
+                            <p></p>
+                            <input type="radio" name="vaksin_sesi" value="4" id="vaksin_id">AstraZeneca Dosis 2
+                            <p></p>
+                            <input type="radio" name="vaksin_sesi" value="5" id="vaksin_id">Moderna Dosis 1
+                            <p></p>
+                            <input type="radio" name="vaksin_sesi" value="6" id="vaksin_id">Moderna Dosis 2
+                            <p></p>
                         </div>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Check me out
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default">Daftar Vaksin</button>
                     </form>
                     <!-- END ARTICLES -->
 

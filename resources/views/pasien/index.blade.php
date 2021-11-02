@@ -102,7 +102,8 @@
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <textarea class="form-control @error('alamat') is-invalid @enderror" rows="3" id="alamat"
+
+                            <textarea class="form-control @error('alamat') is-invalid @enderror" rows="3" id="alamat" name="alamat"
                                 placeholder="Alamat" readonly></textarea>
 
                             @error('alamat')
@@ -128,6 +129,17 @@
                             id="nohp" name="nohp" placeholder="Nomor Handphone/Whatsapp" readonly>
 
                             @error('nohp')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="vaksin_id">vaksin_id</label>
+                            <input type="text" class="form-control @error('nohp') is-invalid @enderror" 
+                            id="vaksin_id" name="vaksin_id" placeholder="vaksin_id" readonly>
+
+                            @error('vaksin_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -225,6 +237,7 @@
                         $('#alamat').val(data.alamat);
                         $('#pekerjaan').val(data.pekerjaan);
                         $('#nohp').val(data.nohp);
+                        $('#vaksin_id').val(data.vaksin_id);
                         $('#validasi').val(data.validasi);
                      }
                   });          

@@ -9,7 +9,7 @@ class Pasien extends Model
 {
     protected $table = 'pasiens';
 
-    protected $fillable = ['nik', 'nama', 'tempatlahir', 'tgllahir', 'alamat', 'pekerjaan','nohp', 'vaksin_id', 'validasi'];
+    protected $fillable = ['nomordaftar', 'nik', 'nama', 'tempatlahir', 'tgllahir', 'alamat', 'pekerjaan','nohp', 'vaksin_id', 'validasi'];
 
     public function vaksin()
     {

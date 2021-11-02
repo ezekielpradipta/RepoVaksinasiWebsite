@@ -55,16 +55,16 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $pasien = Pasien::updateOrCreate(['id' => $request->pasien_id],
-                ['nomordaftar' => $request->pasien_nomordaftar,
-                'nik' => $request->pasien_nik,
-                'nama' => $request->pasien_nama,
-                'tempatlahir' => $request->pasien_tempatlahir,
-                'tgllahir' => $request->pasien_tgllahir,
-                'alamat' => $request->pasien_alamat,
-                'pekerjaan' => $request->pasien_pekerjaan,
-                'nohp' => $request->pasien_nohp,
-                'vaksin_id' => $request->pasien_vaksin_id,
-                'validasi' => $request->pasien_validasi,
+                ['nomordaftar' => $request->nomordaftar,
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'tempatlahir' => $request->tempatlahir,
+                'tgllahir' => $request->tgllahir,
+                'alamat' => $request->alamat,
+                'pekerjaan' => $request->pekerjaan,
+                'nohp' => $request->nohp,
+                'vaksin_id' => $request->vaksin_id,
+                'validasi' => $request->validasi,
             ]);        
 
         return response()->json($pasien);
