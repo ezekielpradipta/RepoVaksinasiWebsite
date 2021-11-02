@@ -36,6 +36,29 @@ class PasienController extends Controller
         return view('pasien.index');
     }
 
+    public function laporan(Request $request)
+    {
+        if($request->ajax()){
+            $pasien = Pasien::with('vaksin')->latest()->get();
+            return Datatables::of($pasien)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                           $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem"><span class="fa fa-pencil"></a>';
+                            return $btn;
+                    })
+                    ->editColumn('validasi',function($pasien){
+                        if($pasien->validasi=="0"){
+                            return '<span class="label label-danger">BELUM VAKSIN</span>';
+                        } else{
+                            return '<span class="label label-success">SUDAH VAKSIN</span>';
+                        }
+                    })
+                    ->rawColumns(['action','validasi'])
+                    ->make(true);
+        }
+        return view('pasien.laporan');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

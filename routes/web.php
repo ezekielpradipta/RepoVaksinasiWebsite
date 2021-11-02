@@ -31,6 +31,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Vaksin'], function (){
 
 Route::group(['namespace' => 'App\Http\Controllers\Pasien'], function (){ 
 	Route::get('/pasien', 'PasienController@index')->name('pasien');
+	Route::get('/laporan', 'PasienController@laporan')->name('laporan');
 	Route::post('pasien/tambah','PasienController@store')->name('pasien.tambah');
 	Route::get('pasien/{id}/edit','PasienController@edit')->name('pasien.edit');
 	Route::delete('pasien/tambah/{id}','PasienController@destroy')->name('pasien.destroy');
