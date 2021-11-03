@@ -5,12 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function(){
-	return view('depan');
-})->name('site.index');
-Route::get('/cekstatus', function(){
-	return view('cekstatus');
-})->name('site.cekstatus');
+Route::get('/', 'App\Http\Controllers\PesertaController@index')->name('depan');
+Route::get('/isihalaman', 'App\Http\Controllers\PesertaController@isiHalaman')->name('isiHalaman');
+Route::post('/tambahpeserta', 'App\Http\Controllers\PesertaController@store')->name('tambahpeserta');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/config', 'App\Http\Controllers\ConfigController@index')->name('config');

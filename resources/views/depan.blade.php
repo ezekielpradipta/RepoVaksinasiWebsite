@@ -10,6 +10,7 @@
     <link href="{{asset('front/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('front/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 </head>
 
 <body>
@@ -81,107 +82,59 @@
                         Formulir Pendaftaran vaksinasi
                     </div>
                     <hr class="style-three">
-                    <form method="post" id="form" name="form" enctype="multipart/form-data"
-                    @csrf>
+                    <form method="post" id="tambahpeserta" name="tambahpeserta" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
-                            <label for="nik">NIK KTP</label>
-                            <input type="text" class="form-control @error('nik') is-invalid @enderror" 
-                            id="nik" name="nik" placeholder="Masukan Nomor NIK KTP Anda" required>
-
-                            @error('nik')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="">NIK</label>
+                            <input type="text" class="form-control" name="nik" id="nik" placeholder=" Masukan NIK Anda"
+                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama Lengkap</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" 
-                            id="nama" name="nama" placeholder="Masukan Nama Lengkap Anda" required>
-
-                            @error('nama')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="text" class="form-control " id="nama" name="nama"
+                                placeholder="Masukan Nama Lengkap Anda" required>
                         </div>
                         <div class="form-group">
                             <label for="tempatlahir">Tempat Lahir</label>
-                            <input type="text" class="form-control @error('tempatlahir') is-invalid @enderror" 
-                            id="tempatlahir" name="tempatlahir" placeholder="Tempat Lahir" required>
+                            <input type="text" class="form-control" id="tempatlahir" name="tempatlahir"
+                                placeholder="Tempat Lahir" required>
 
-                            @error('tempatlahir')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="tgllahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control @error('tgllahir') is-invalid @enderror" 
-                            id="tgllahir" name="tgllahir" required>
-
-                            @error('tgllahir')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="date" class="form-control" id="tgllahir" name="tgllahir" required>
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <textarea class="form-control @error('alamat') is-invalid @enderror" rows="3" id="alamat"
+                            <textarea class="form-control " rows="3" name="alamat" id="alamat"
                                 placeholder="Masukan Alamat Anda" require></textarea>
-
-                            @error('alamat')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control @error('pekerjaan') is-invalid @enderror" 
-                            id="pekerjaan" name="pekerjaan" placeholder="Pekerjaan" required>
-
-                            @error('pekerjaan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
+                                placeholder="Pekerjaan" required>
                         </div>
                         <div class="form-group">
-                            <label for="nohp">Nomor Handphone/Whatsapp</label>
-                            <input type="text" class="form-control @error('nohp') is-invalid @enderror" 
-                            id="nohp" name="nohp" placeholder="Masukan Nomor Handphone/Whatsapp Anda" required>
-
-                            @error('nohp')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
+                            <label for="">No Hp/ Whatapps</label>
+                            <input type="text" class="form-control" name="nohp" id="nohp"
+                                placeholder="Masukan No HP Anda"
+                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                            <label class="text-danger" id="vaksin_stock_error"></label>
                         </div>
                         <div class="form-group">
                             <label for="">Jenis Vaksin</label>
-                            <br></br>
-                            <input type="radio" name="vaksin_sesi" value="1" id="vaksin_id">Sinovac Dosis 1
-                            <p></p>
-                            <input type="radio" name="vaksin_sesi" value="2" id="vaksin_id">Sinovac Dosis 2
-                            <p></p>
-                            <input type="radio" name="vaksin_sesi" value="3" id="vaksin_id">AstraZeneca Dosis 1
-                            <p></p>
-                            <input type="radio" name="vaksin_sesi" value="4" id="vaksin_id">AstraZeneca Dosis 2
-                            <p></p>
-                            <input type="radio" name="vaksin_sesi" value="5" id="vaksin_id">Moderna Dosis 1
-                            <p></p>
-                            <input type="radio" name="vaksin_sesi" value="6" id="vaksin_id">Moderna Dosis 2
-                            <p></p>
+                            <select name="vaksin_id" id="vaksin_id" class="form-control" required>
+                                <option disabled selected value>--Pilih Vaksin--</option>
+                                @foreach($stocks as $stok)
+                                <option value="{{ $stok->id }}">
+                                    {{ $stok->vaksin_nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Check me out
-                            </label>
+                        <div class="text-center">
+                            <button type="submit" id="btn-save" class="btn btn-primary">Daftar</button>
                         </div>
-                        <button type="submit" class="btn btn-default">Daftar Vaksin</button>
+
                     </form>
                     <!-- END ARTICLES -->
 
@@ -195,34 +148,13 @@
                 </div>
 
                 <div class="row margin-top-20">
-                    <div class="col-md-12">
-                        <div class="fb-heading-small">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>Sinovac Dosis 1</h3>
-                                    <h5>Stock Vaksin : 100</h5>
-                                    <h5>08:00-10:00</h5>
-                                    <h5>Puskesmas Purbalingga</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="style-three">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Sinovac Dosis 2</h3>
-                                <h5>Stock Vaksin : 200</h5>
-                                <h5>10:00-12:00</h5>
-                                <h5>Puskesmas Purbalingga</h5>
-                            </div>
-                        </div>
+                    <div class="col-md-12 vaksin-info">
+
                     </div>
                 </div>
             </div>
+            <!-- END SIDEBAR STUFF -->
         </div>
-        <!-- END SIDEBAR STUFF -->
-    </div>
     </div>
     <!-- END MAIN SECTION -->
 
@@ -242,6 +174,60 @@
     <script src="{{ asset('front/js/main.js') }}"></script>
     <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
     <script src='https://cdn.rawgit.com/VPenkov/okayNav/master/app/js/jquery.okayNav.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                url: "{{ route('isiHalaman') }}",
+                type: "GET",
+                dataType: "json",
+
+                success: function (data) {
+                    console.log(data);
+                    for (var i = 0; i < data.stock.length; i++) {
+                        var info= '<div class="fb-heading-small">'+
+                            '<div class="small-box bg-green">'+
+                               ' <div class="inner">' +
+                                    '<h3>'+data.stock[i].vaksin_nama+' Dosis '+data.stock[i].vaksin_dosis+'</h3>'+
+                                    '<h5> Stock: '+data.stock[i].vaksin_stock+'</h5>'+
+                                   '<h5>'+data.stock[i].vaksin_sesi+'</h5>' +
+
+                                '</div>'+
+                            '</div>' +
+                        '</div>'+
+                        '<hr class="style-three">' +
+                    '</div>';
+                        $('.vaksin-info').append(info);
+                    }
+                }
+            });
+            $('#btn-save').click(function (e) {
+            e.preventDefault();
+            var myForm = $("#tambahpeserta")[0];
+            $(this).html('Sending..');
+            $.ajax({
+                data: new FormData(myForm),
+                url: "{{ route('tambahpeserta') }}",
+                type: "POST",
+
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    Command: swal("Sukses", "Berhasil", "success");
+                },
+                error: function (data) {
+                    Command: swal("Gagal", "Gagal ", "error");
+                }
+            });
+        });
+
+        });
+    </script>
 </body>
 
 </html>
