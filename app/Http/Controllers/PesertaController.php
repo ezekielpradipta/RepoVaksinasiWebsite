@@ -21,6 +21,9 @@ class PesertaController extends Controller
         ->get();
         return view('depan', compact('stocks'));
     }
+    public function cekstatus(){
+        return view('cekstatus');
+    }
     public function isiHalaman(){
         $stock = DB::table('vaksins')
         ->where('vaksin_stock','>','0')

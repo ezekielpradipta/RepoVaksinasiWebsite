@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'App\Http\Controllers\PesertaController@index')->name('depan');
+Route::get('/cekstatus', 'App\Http\Controllers\PesertaController@cekstatus')->name('cekstatus');
 Route::get('/isihalaman', 'App\Http\Controllers\PesertaController@isiHalaman')->name('isiHalaman');
 Route::post('/tambahpeserta', 'App\Http\Controllers\PesertaController@store')->name('tambahpeserta');
 

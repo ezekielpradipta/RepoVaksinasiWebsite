@@ -10,6 +10,7 @@
     <link href="{{asset('front/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('front/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('front/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css">
 </head>
 
 <body>
@@ -115,37 +116,16 @@
 
                 </div>
             </div>
-            <!-- END ARTICLES OVERVIEW SECTION-->
+<!-- END ARTICLES OVERVIEW SECTION-->
             <!-- SIDEBAR STUFF -->
             <div class="col-md-4 padding-20">
                 <div class="fb-heading-small">
-                            Jadwal Vaksinasi Hari ini
-                        </div>
+                    Jadwal Vaksinasi Hari ini
+                </div>
 
                 <div class="row margin-top-20">
-                    <div class="col-md-12">
-                        <div class="fb-heading-small">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                  <h3>Sinovac Dosis 1</h3>
-                                  <h5>Stock Vaksin : 100</h5>
-                                  <h5>08:00-10:00</h5>
-                                  <h5>Puskesmas Purbalingga</h5>
-                                </div>
-                              </div>
-                        </div>
-                        <hr class="style-three">
-                        <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                  <h3>Sinovac Dosis 2</h3>
-                                  <h5>Stock Vaksin : 200</h5>
-                                  <h5>10:00-12:00</h5>
-                                  <h5>Puskesmas Purbalingga</h5>
-                                </div>
-                              </div>
-                        </div>
+                    <div class="col-md-12 vaksin-info">
+
                     </div>
                 </div>
             </div>
@@ -170,6 +150,40 @@
     <script src="{{ asset('front/js/main.js') }}"></script>
     <script src="{{ asset('front/js/bootstrap.min.js') }}"></script>
     <script src='https://cdn.rawgit.com/VPenkov/okayNav/master/app/js/jquery.okayNav.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+            $.ajax({
+                url: "{{ route('isiHalaman') }}",
+                type: "GET",
+                dataType: "json",
+
+                success: function (data) {
+                    console.log(data);
+                    for (var i = 0; i < data.stock.length; i++) {
+                        var info= '<div class="fb-heading-small">'+
+                            '<div class="small-box bg-green">'+
+                               ' <div class="inner">' +
+                                    '<h3>'+data.stock[i].vaksin_nama+' Dosis '+data.stock[i].vaksin_dosis+'</h3>'+
+                                    '<h5> Stock: '+data.stock[i].vaksin_stock+'</h5>'+
+                                   '<h5>Sesi: '+data.stock[i].vaksin_sesi+'</h5>' +
+
+                                '</div>'+
+                            '</div>' +
+                        '</div>'+
+                        '<hr class="style-three">' +
+                    '</div>';
+                        $('.vaksin-info').append(info);
+                    }
+                }
+            });            
+        });
+    </script>
 </body>
 
 </html>

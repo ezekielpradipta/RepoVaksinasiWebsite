@@ -195,7 +195,7 @@
                                ' <div class="inner">' +
                                     '<h3>'+data.stock[i].vaksin_nama+' Dosis '+data.stock[i].vaksin_dosis+'</h3>'+
                                     '<h5> Stock: '+data.stock[i].vaksin_stock+'</h5>'+
-                                   '<h5>'+data.stock[i].vaksin_sesi+'</h5>' +
+                                   '<h5>Sesi: '+data.stock[i].vaksin_sesi+'</h5>' +
 
                                 '</div>'+
                             '</div>' +
