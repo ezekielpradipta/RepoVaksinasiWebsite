@@ -26,6 +26,8 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
         <div class="container">
+            <img src="{{ asset(\App\Models\Website::find(1)->puskesmas_image) }}"
+                width="{{ \App\Models\Website::find(1)->puskesmas_image_size }}px" />
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -196,11 +198,9 @@
         <div class="modal-dialog text-center">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="pop-close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h3>Puskesmas Purbalingga</h3>
-                    <h5>Alamat</h5>
+                    <img src="{{ asset(\App\Models\Website::find(1)->puskesmas_image) }}" width="60px" />
+                    <h3 id="modal_vaksin_puskesmas"></h3>
+                    <h5 id="modal_vaksin_alamat"></h5>
                     <h5 id="modal_vaksin_vaksin"></h5>
                     <h5 id="modal_vaksin_nama"></h5>
                 </div>
@@ -208,14 +208,14 @@
                     <input type="hidden" id="modal_vaksin_NIK" class="modal_vaksin_NIK">
                     <h5>Nomor Pendaftaran</h5>
                     <h1 id="modal_vaksin_nomor"></h1>
-                    <h3>Tanggal</h3>
+                    <h3 id="modal_vaksin_tanggal"></h3>
                     <h5 id="modal_vaksin_sesi"></h5>
 
                 </div>
                 <div class="modal-footer text-center">
                     <p>Perhatian</p>
                     <p>Wajib membawa nomor antrian</p>
-                    <button type="button" class="btn btn-primary" value="tambah" id="btn-change-badge">Cetak</button>
+                    <button type="button" class="btn btn-primary btn-cetak" value="tambah" id="btn-cetak">Cetak</button>
                 </div>
             </div>
         </div>
@@ -291,6 +291,9 @@
                                 $('#modal_vaksin_nomor').html(data.peserta.nomordaftar);
                                 $('#modal_vaksin_sesi').html(data.peserta.sesi);
                                 $('#modal_vaksin_vaksin').html(namavaksin);
+                                $('#modal_vaksin_tanggal').html(data.parse);
+                                $('#modal_vaksin_puskesmas').html(data.website.puskesmas_name);
+                                $('#modal_vaksin_alamat').html(data.website.puskesmas_alamat);
                             }
                         });
 
@@ -299,8 +302,19 @@
                     Command: swal("Gagal", "Gagal ", "error");
                 }
             });
-        });
-
+         });
+         $('body').on('click','.btn-cetak',function(){
+              var bla = $('#nik').val();
+              var url = "{{route('depan')}}".concat("/cetak/" + bla );
+              console.log(url);
+              $.ajax({
+                      url: url,
+                      type: 'GET',
+                      success: function(response){
+                        window.location = url;
+                      }
+                    });
+            });
         });
     </script>
 </body>

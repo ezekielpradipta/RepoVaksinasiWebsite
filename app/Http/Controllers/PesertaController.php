@@ -8,6 +8,8 @@ use App\Models\Pasien;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use PDF;
 class PesertaController extends Controller
 {
     public function __construct()
@@ -64,6 +66,35 @@ class PesertaController extends Controller
         $peserta = DB::table('pasiens')
         ->join('vaksins','vaksins.id','=','pasiens.vaksin_id')
         ->where('nik','=',$nik)->first();
-        return response()->json(['peserta'=>$peserta]);
+        $website = DB::table('websites')->find(1);
+        $tanggal = $peserta->created_at;
+        $parse = Carbon::parse($tanggal)->translatedFormat('l,d F Y');
+        return response()->json(['peserta'=>$peserta,'website'=>$website,'parse'=>$parse]);
+    }
+    public function cetak($nik)
+    {
+        //$peserta = DB::table('pasiens')
+       // ->join('vaksins','vaksins.id','=','pasiens.vaksin_id')
+       // ->where('nik','=',$nik)->first();
+       $peserta = Pasien::with('vaksin')->where('nik','=',$nik)->first();
+        $website = DB::table('websites')->find(1);
+        $puskesmas_nama = $website->puskesmas_name;
+        $puskesmas_alamat = $website->puskesmas_alamat;
+        $nomor_pendaftaran = $peserta->nomordaftar;
+        $peserta_nama = $peserta->nama;
+        $vaksin_nama= $peserta->vaksin->vaksin_nama;
+        $vaksin_sesi = $peserta->vaksin->vaksin_dosis;
+        $tanggal = $peserta->created_at;
+        $parse = Carbon::parse($tanggal)->translatedFormat('l,d F Y');
+        $pdf = PDF::loadView('cetak', ['parse' => $parse,
+        'puskesmas_nama'=>$puskesmas_nama,
+        'puskesmas_alamat'=>$puskesmas_alamat,
+        'peserta_nama'=>$peserta_nama,
+        'nomor_pendaftaran'=>$nomor_pendaftaran,
+        'vaksin_nama'=>$vaksin_nama,
+        'vaksin_sesi'=>$vaksin_sesi,
+    
+    ]);
+        return $pdf->download('Bukti-Pendaftaran'.date('Y-m-d_H-i-s').'.pdf');
     }
 }

@@ -15,5 +15,5 @@ class Pasien extends Model
     {
         return $this->belongsTo(Vaksin::class);
     }
-    
+
 }
