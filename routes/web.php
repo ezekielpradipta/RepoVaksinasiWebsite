@@ -9,6 +9,7 @@ Route::get('/', 'App\Http\Controllers\PesertaController@index')->name('depan');
 Route::get('/cekstatus', 'App\Http\Controllers\PesertaController@cekstatus')->name('cekstatus');
 Route::get('/isihalaman', 'App\Http\Controllers\PesertaController@isiHalaman')->name('isiHalaman');
 Route::post('/tambahpeserta', 'App\Http\Controllers\PesertaController@store')->name('tambahpeserta');
+Route::get('/tambahpeserta/{nik}', 'App\Http\Controllers\PesertaController@aftertambah')->name('aftertambah');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/config', 'App\Http\Controllers\ConfigController@index')->name('config');

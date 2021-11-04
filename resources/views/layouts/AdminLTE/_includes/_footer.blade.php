@@ -31,8 +31,10 @@
 				'Dec' => 'December'
 			);
 
-			echo "<b>".$semana["$data"] . ", {$dia} de " . $mes_extenso["$mes"] . " de {$ano}.</b>";
+			echo "<b>".$semana["$data"] . ", {$dia}  " . $mes_extenso["$mes"] . " {$ano}.</b>";
 		?>
 	</div>
-	<strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">{!! \App\Models\Config::find(1)->app_name !!}</a></strong>.
+	<strong>Copyright &copy;
+		<?php echo date('Y'); ?> <a href="#">{!! \App\Models\Config::find(1)->app_name !!}</a>
+	</strong>.
 </footer>

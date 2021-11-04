@@ -19,7 +19,7 @@ class PesertaController extends Controller
         ->where('vaksin_stock','>','0')
         ->where('vaksin_status','=','1')
         ->get();
-        return view('depan', compact('stocks'));
+        return view('depan2', compact('stocks'));
     }
     public function cekstatus(){
         return view('cekstatus');
@@ -59,5 +59,11 @@ class PesertaController extends Controller
           $jumlahstok= Vaksin::find($stok_id)->decrement('vaksin_stock',1);;
 
       return response()->json();
+    }
+    public function aftertambah($nik){
+        $peserta = DB::table('pasiens')
+        ->join('vaksins','vaksins.id','=','pasiens.vaksin_id')
+        ->where('nik','=',$nik)->first();
+        return response()->json(['peserta'=>$peserta]);
     }
 }

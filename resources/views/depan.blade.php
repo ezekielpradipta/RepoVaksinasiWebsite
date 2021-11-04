@@ -14,18 +14,6 @@
 </head>
 
 <body>
-    <div class="container-fluid featured-area-white-border">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="login-box border-right-1">
-                        <a href="/login">
-                            <i class="fa fa-key"></i> Login</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- TOP NAVIGATION -->
     <div class="container-fluid">
         <div class="navigation">
@@ -168,7 +156,35 @@
         </div>
     </div>
     <!-- END COPYRIGHT INFO -->
+    <div class="modal show" id="modal-badge">
+        <div class="modal-dialog text-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3>Puskesmas Purbalingga</h3>
+                    <h5>Alamat</h5>
+                    <h3>Vaksin Dosis</h3>
+                    <h3>Nama</h3>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="badge_val">
 
+                    <h5>Nomor Pendaftaran</h5>
+                    <h1>xxxxx</h1>
+                    <h3>Tanggal</h3>
+                    <h5>Jam</h5>
+
+                </div>
+                <div class="modal-footer text-center">
+                    <p>Perhatian</p>
+                    <p>Wajib membawa nomor antrian</p>
+                    <button type="button" class="btn btn-primary" value="tambah" id="btn-change-badge">Cetak</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- LOADING MAIN JAVASCRIPT -->
     <script src="{{ asset('front/js/jquery-2.2.4.min.js') }}"></script>
     <script src="{{ asset('front/js/main.js') }}"></script>
