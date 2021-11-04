@@ -35,6 +35,6 @@
 		?>
 	</div>
 	<strong>Copyright &copy;
-		<?php echo date('Y'); ?> <a href="#">{!! \App\Models\Config::find(1)->app_name !!}</a>
+		<?php echo date('Y'); ?> <a href="#">{!! \App\Models\Website::find(1)->app_name !!}</a>
 	</strong>.
 </footer>

@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> {!! \App\Models\Config::find(1)->app_name_abv !!} | @yield('title')</title>
+    <title> {!! \App\Models\Website::find(1)->app_name !!}</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{ asset(\App\Models\Config::find(1)->favicon) }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset(\App\Models\Website::find(1)->favicon) }}" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->

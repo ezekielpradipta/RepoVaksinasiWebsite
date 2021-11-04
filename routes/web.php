@@ -12,8 +12,8 @@ Route::post('/tambahpeserta', 'App\Http\Controllers\PesertaController@store')->n
 Route::get('/tambahpeserta/{nik}', 'App\Http\Controllers\PesertaController@aftertambah')->name('aftertambah');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-Route::get('/config', 'App\Http\Controllers\ConfigController@index')->name('config');
-Route::put('/config/update/{id}', 'App\Http\Controllers\ConfigController@update')->name('config.update');
+Route::get('/website', 'App\Http\Controllers\WebsiteController@index')->name('website');
+Route::put('/website/update/{id}', 'App\Http\Controllers\WebsiteController@update')->name('website.update');
 
 Route::group(['namespace' => 'App\Http\Controllers\Profile'], function (){ 
 	Route::get('/profile', 'ProfileController@index')->name('profile');

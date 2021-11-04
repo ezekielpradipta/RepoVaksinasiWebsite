@@ -52,8 +52,8 @@
 				<ul class="treeview-menu">
 					@if (Auth::user()->can('root-dev', ''))
 					<li
-						class="{{ Request::segment(1) === 'config' && Request::segment(2) === null ? 'active' : null }}">
-						<a href="{{ route('config') }}" title="App Config">
+						class="{{ Request::segment(1) === 'website' && Request::segment(2) === null ? 'active' : null }}">
+						<a href="{{ route('website') }}" title="Konfigurasi">
 							<i class="fa fa-gear"></i> <span> Settings App</span>
 						</a>
 					</li>
