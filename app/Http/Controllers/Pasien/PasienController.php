@@ -16,11 +16,12 @@ class PasienController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $pasien = Pasien::with('vaksin')->latest()->get();
+            $pasien = Pasien::with('vaksin')->where('validasi','=','0')->latest()->get();
             return Datatables::of($pasien)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editItem"><span class="fa fa-pencil"></a>';
+                           $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteItem"><span class="fa fa-trash"></a>';
                             return $btn;
                     })
                     ->editColumn('validasi',function($pasien){
@@ -112,7 +113,7 @@ class PasienController extends Controller
      */
     public function edit($id)
     {
-        $pasien = Pasien::find($id);
+        $pasien = Pasien::with('vaksin')->find($id);
         return response()->json($pasien);
     }
 

@@ -62,8 +62,8 @@
                     </div>
                     <div class="form-group">
                         <label for="">Sesi Vaksin</label>
-                        <input type="radio" name="vaksin_sesi" value="1" id="vaksin_sesi1">08:00 - 10:00 WIB
-                        <input type="radio" name="vaksin_sesi" value="2" id="vaksin_sesi2">10:00 - 12:00 WIB
+                        <input type="text" name="vaksin_sesi" class="form-control" id="vaksin_sesi"
+                            placeholder="Sesi Vaksin">
                     </div>
                     <div class="form-group">
                         <label for="">Status</label>
@@ -150,11 +150,7 @@
                         $('#vaksin_stock').val(data.vaksin_stock);
                         $('#vaksin_status').val(data.vaksin_status);
                         $('#vaksin_dosis').val(data.vaksin_dosis);
-                       if(data.vaksin_sesi=="1"){
-                        $('#vaksin_sesi1').prop('checked',true);
-                       } else{
-                        $('#vaksin_sesi2').prop('checked',true);
-                       }
+                        $('#vaksin_sesi').val(data.vaksin_sesi);
                      }
                   });          
             });

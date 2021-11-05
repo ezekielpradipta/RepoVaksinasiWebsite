@@ -15,11 +15,11 @@
 						Data Vaksin</span></a>
 			</li>
 			<li class="{{ Request::segment(1) === 'pasien' ? 'active' : null }}">
-				<a href="{{ route('pasien') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
+				<a href="{{ route('pasien.index') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
 						Data peserta</span></a>
 			</li>
 			<li class="{{ Request::segment(1) === 'laporan' ? 'active' : null }}">
-				<a href="{{ route('laporan') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
+				<a href="{{ route('pasien.index') }}" title="Dashboard"><i class="fa fa-pencil"></i> <span>
 						Laporan Data Peserta Vaksin</span></a>
 			</li>
 			@endif
