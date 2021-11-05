@@ -33,13 +33,16 @@ class PesertaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'nik'=>['required'],
+            'nik'=>['required','unique:pasiens,nik'],
             'nama'=>['required'],
             'tempatlahir'=>['required'],
             'tgllahir'=>['required'],
             'alamat'=>['required'],
             'pekerjaan'=>['required'],
             'nohp'=>['required'],
+        ],
+        [
+            'nik.unique' => 'NIK Sudah Terdaftar'
         ]);
         $random = Str::random(6);
          $pasien = Pasien::create([

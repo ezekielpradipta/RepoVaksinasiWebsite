@@ -70,11 +70,20 @@
             <!-- Portfolio Grid Items-->
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
+                <div id="error" style=" display:none; ">
+                    <div class="alert alert-danger ">
+                        <strong>Whoops!</strong> Data yang anda masukan tidak sesuai.<br><br>
+                        <ul class="list_error">
+
+                        </ul>
+                    </div>
+                </div>
                 <form method="post" id="tambahpeserta" name="tambahpeserta" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="">NIK</label>
-                        <input type="text" class="form-control" name="nik" id="nik" placeholder=" Masukan NIK Anda"
+                        <input type="text" class="form-control" max="16" name="nik" id="nik"
+                            placeholder=" Masukan NIK Anda"
                             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
                     </div>
                     <div class="form-group">
@@ -227,7 +236,7 @@
                 dataType: "json",
 
                 success: function (data) {
-                    
+                   
                     for (var i = 0; i < data.stock.length; i++) {
                         var box = '<div class="col-lg-3 col-xs-6">'+
                     
@@ -282,13 +291,21 @@
                 },
                 error: function (data) {
                     Command: swal("Gagal", "Gagal ", "error");
+                    $("#error").show();
+                    var error_nik = data.responseJSON.errors.nik;
+                    if (error_nik) {
+                        for (var i = 0; i < error_nik.length; i++) {
+                            var obj = '<li>' + error_nik[i] + '</li>';
+                            $('.list_error').append(obj);
+                        }
+                    }
                 }
             });
          });
          $('body').on('click','.btn-cetak',function(){
               var bla = $('#modal_vaksin_NIK').val();
               var url = "{{route('depan')}}".concat("/cetak/" + bla );
-              
+             
               $.ajax({
                       url: url,
                       type: 'GET',
@@ -301,14 +318,14 @@
                 var bla = $('#txt_name').val();
               
               var url = "{{route('tambahpeserta')}}".concat("/cekstatus/" + bla );
-              
+             
               $.ajax({
                       url: url,
                       type: 'GET',
                     dataType: "json",
                       success: function(data){
-                                $('#modal_vaksin_NIK').val(data.peserta.nik);
-                        
+                        $('#modal_vaksin_NIK').val(data.peserta.nik);
+                      
                                 var namavaksin = data.peserta.vaksin_nama + ' Dosis ' + data.peserta.vaksin_dosis;
                                 $('#modal-vaksin').modal('show');
                                 $('#modal_vaksin_nama').html(data.peserta.nama);
@@ -319,10 +336,11 @@
                                 $('#modal_vaksin_puskesmas').html(data.website.puskesmas_name);
                                 $('#modal_vaksin_alamat').html(data.website.puskesmas_alamat);
 
-                      }
-                      error: function (data) {
-                            Command: swal("Gagal", "Gagal ", "error");
-                        }
+                      },
+                error: function (data) {
+                    Command: swal("Gagal", "Data Tidak Ditemukan ", "error");
+                }
+                      
                     });
             });
         });
