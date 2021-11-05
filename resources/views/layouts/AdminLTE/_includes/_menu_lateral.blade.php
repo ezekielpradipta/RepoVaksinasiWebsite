@@ -58,14 +58,7 @@
 						</a>
 					</li>
 					@endif
-					<li class="
-						{{ Request::segment(1) === 'user' ? 'active' : null }}
-						{{ Request::segment(1) === 'role' ? 'active' : null }}
-						">
-						<a href="{{ route('user') }}" title="Users">
-							<i class="fa fa-user"></i> <span> Users</span>
-						</a>
-					</li>
+
 				</ul>
 			</li>
 		</ul>
