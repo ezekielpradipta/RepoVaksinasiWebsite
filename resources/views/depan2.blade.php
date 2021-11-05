@@ -123,6 +123,10 @@
                     </div>
 
                 </form>
+                <p>Keterangan:</p>
+                <p>*Pastikan Data yang diisikan sudah benar</p>
+                <p>*Jika mendapati kendala dapat menguhungi call center pada {!!
+                    \App\Models\Website::find(1)->puskesmas_nohp !!}</p>
             </div>
         </div>
     </section>
@@ -130,7 +134,7 @@
     <section class="page-section bg-primary text-white mb-0" id="cekstatus">
         <div class="container">
             <!-- About Section Heading-->
-            <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-white">Cek Status Pendaftaran</h2>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -139,22 +143,13 @@
             </div>
             <!-- About Section Content-->
             <div class="row">
-                <div class="col-lg-4 ms-auto">
-                    <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download
-                        includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS
-                        stylesheets for easy customization.</p>
+                <div class="form-group">
+                    <label for="">NIK/ Nomor Pendaftaran</label>
+                    <input type="text" class="form-control" id="txt_name" />
                 </div>
-                <div class="col-lg-4 me-auto">
-                    <p class="lead">You can create your own custom avatar for the masthead, change the icon in the
-                        dividers, and add your email address to the contact form to make it fully functional!</p>
+                <div class="text-center mt-3">
+                    <button type="submit" id="btn-cek" class="btn bg-aqua btn-cek">Cek Status</button>
                 </div>
-            </div>
-            <!-- About Section Button-->
-            <div class="text-center mt-4">
-                <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
-                    <i class="fas fa-download me-2"></i>
-                    Free Download!
-                </a>
             </div>
         </div>
     </section>
@@ -164,37 +159,23 @@
         <div class="container">
             <div class="row">
                 <!-- Footer Location-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Location</h4>
+                <div class="col">
+                    <h4 class="text-uppercase mb-4">{!! \App\Models\Website::find(1)->puskesmas_name !!}</h4>
                     <p class="lead mb-0">
-                        2215 John Daniel Drive
-                        <br />
-                        Clark, MO 65243
+                        {!! \App\Models\Website::find(1)->puskesmas_alamat !!}
                     </p>
-                </div>
-                <!-- Footer Social Icons-->
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Around the Web</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                </div>
-                <!-- Footer About Text-->
-                <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">About Freelancer</h4>
                     <p class="lead mb-0">
-                        Freelance is a free to use, MIT licensed Bootstrap theme created by
-                        <a href="http://startbootstrap.com">Start Bootstrap</a>
-                        .
+                        {!! \App\Models\Website::find(1)->puskesmas_email !!}
+                    </p>
+                    <p class="lead mb-0">
+                        {!! \App\Models\Website::find(1)->puskesmas_nohp !!}
                     </p>
                 </div>
             </div>
         </div>
     </footer>
     <div class="modal show fade" id="modal-vaksin">
+        <input type="hidden" id="carinomer">
         <div class="modal-dialog text-center">
             <div class="modal-content">
                 <div class="modal-header">
@@ -222,7 +203,8 @@
     </div>
     <!-- Copyright Section-->
     <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
+        <div class="container"><small>Copyright &copy; {!! \App\Models\Website::find(1)->app_name !!}</small>
+        </div>
     </div>
     <script src="{{ asset('assets/adminlte/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap core JS-->
@@ -245,7 +227,7 @@
                 dataType: "json",
 
                 success: function (data) {
-                    console.log(data);
+                    
                     for (var i = 0; i < data.stock.length; i++) {
                         var box = '<div class="col-lg-3 col-xs-6">'+
                     
@@ -284,7 +266,7 @@
                             type: 'GET',
                             dataType: "json",
                             success: function (data) {
-                                console.log(data);
+                                
                                 var namavaksin = data.peserta.vaksin_nama + ' Dosis ' + data.peserta.vaksin_dosis;
                                 $('#modal-vaksin').modal('show');
                                 $('#modal_vaksin_nama').html(data.peserta.nama);
@@ -304,15 +286,43 @@
             });
          });
          $('body').on('click','.btn-cetak',function(){
-              var bla = $('#nik').val();
+              var bla = $('#modal_vaksin_NIK').val();
               var url = "{{route('depan')}}".concat("/cetak/" + bla );
-              console.log(url);
+              
               $.ajax({
                       url: url,
                       type: 'GET',
                       success: function(response){
                         window.location = url;
                       }
+                    });
+            });
+            $('body').on('click','.btn-cek',function(){
+                var bla = $('#txt_name').val();
+              
+              var url = "{{route('tambahpeserta')}}".concat("/cekstatus/" + bla );
+              
+              $.ajax({
+                      url: url,
+                      type: 'GET',
+                    dataType: "json",
+                      success: function(data){
+                                $('#modal_vaksin_NIK').val(data.peserta.nik);
+                        
+                                var namavaksin = data.peserta.vaksin_nama + ' Dosis ' + data.peserta.vaksin_dosis;
+                                $('#modal-vaksin').modal('show');
+                                $('#modal_vaksin_nama').html(data.peserta.nama);
+                                $('#modal_vaksin_nomor').html(data.peserta.nomordaftar);
+                                $('#modal_vaksin_sesi').html(data.peserta.sesi);
+                                $('#modal_vaksin_vaksin').html(namavaksin);
+                                $('#modal_vaksin_tanggal').html(data.parse);
+                                $('#modal_vaksin_puskesmas').html(data.website.puskesmas_name);
+                                $('#modal_vaksin_alamat').html(data.website.puskesmas_alamat);
+
+                      }
+                      error: function (data) {
+                            Command: swal("Gagal", "Gagal ", "error");
+                        }
                     });
             });
         });

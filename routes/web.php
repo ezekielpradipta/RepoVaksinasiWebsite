@@ -10,6 +10,8 @@ Route::get('/cekstatus', 'App\Http\Controllers\PesertaController@cekstatus')->na
 Route::get('/isihalaman', 'App\Http\Controllers\PesertaController@isiHalaman')->name('isiHalaman');
 Route::post('/tambahpeserta', 'App\Http\Controllers\PesertaController@store')->name('tambahpeserta');
 Route::get('/tambahpeserta/{nik}', 'App\Http\Controllers\PesertaController@aftertambah')->name('aftertambah');
+Route::get('/tambahpeserta/cekstatus/{nik}', 'App\Http\Controllers\PesertaController@cekstatus')->name('cekstatus');
+
 Route::get('/cetak/{id}','App\Http\Controllers\PesertaController@cetak')->name('cetak');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');

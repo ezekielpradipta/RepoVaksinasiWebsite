@@ -23,9 +23,6 @@ class PesertaController extends Controller
         ->get();
         return view('depan2', compact('stocks'));
     }
-    public function cekstatus(){
-        return view('cekstatus');
-    }
     public function isiHalaman(){
         $stock = DB::table('vaksins')
         ->where('vaksin_stock','>','0')
@@ -71,6 +68,17 @@ class PesertaController extends Controller
         $parse = Carbon::parse($tanggal)->translatedFormat('l,d F Y');
         return response()->json(['peserta'=>$peserta,'website'=>$website,'parse'=>$parse]);
     }
+    public function cekstatus($nik){
+        $peserta = DB::table('pasiens')
+        ->join('vaksins','vaksins.id','=','pasiens.vaksin_id')
+        ->where('nik','=',$nik)
+        ->orWhere('nomordaftar','=',$nik)
+        ->first();
+        $website = DB::table('websites')->find(1);
+        $tanggal = $peserta->created_at;
+        $parse = Carbon::parse($tanggal)->translatedFormat('l,d F Y');
+        return response()->json(['peserta'=>$peserta,'website'=>$website,'parse'=>$parse]);
+    }
     public function cetak($nik)
     {
         //$peserta = DB::table('pasiens')
@@ -83,17 +91,17 @@ class PesertaController extends Controller
         $nomor_pendaftaran = $peserta->nomordaftar;
         $peserta_nama = $peserta->nama;
         $vaksin_nama= $peserta->vaksin->vaksin_nama;
-        $vaksin_sesi = $peserta->vaksin->vaksin_dosis;
+        $vaksin_sesi = $peserta->vaksin->vaksin_sesi;
+        $vaksin_dosis = $peserta->vaksin->vaksin_dosis;
         $tanggal = $peserta->created_at;
         $parse = Carbon::parse($tanggal)->translatedFormat('l,d F Y');
         $pdf = PDF::loadView('cetak', ['parse' => $parse,
-        'puskesmas_nama'=>$puskesmas_nama,
-        'puskesmas_alamat'=>$puskesmas_alamat,
+        'website'=>$website,
         'peserta_nama'=>$peserta_nama,
         'nomor_pendaftaran'=>$nomor_pendaftaran,
         'vaksin_nama'=>$vaksin_nama,
         'vaksin_sesi'=>$vaksin_sesi,
-    
+        'vaksin_dosis'=>$vaksin_dosis,
     ]);
         return $pdf->download('Bukti-Pendaftaran'.date('Y-m-d_H-i-s').'.pdf');
     }

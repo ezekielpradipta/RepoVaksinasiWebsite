@@ -103,9 +103,12 @@
 
 <body>
     <div class="invoice-box">
+        <center>BUKTI PENDAFTARAN VAKSINASI</center>
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
                 <td colspan="2">
+
+                    <hr>
                     <table>
                         <tr>
                             <td class="title">
@@ -126,17 +129,27 @@
                     <table>
                         <tr>
                             <td>
-                                <strong>PESERTA</strong><br>
+                                <strong>Peserta: </strong><br>
                                 {{ $peserta_nama }}<br>
-                                {{ $vaksin_nama }}<br>
+                                Vaksin Dosis {{ $vaksin_dosis }} {{ $vaksin_nama }}<br>
                                 {{ $vaksin_sesi }}<br>
                             </td>
 
                             <td>
-
-                                {{ $puskesmas_nama }}<br>
-                                {{ $puskesmas_alamat }}<br>
+                                <strong>Perhatian!! </strong><br>
+                                Wajib Membawa Nomor Antrian <br>
+                                Pulpen, Fotokopi KK <br>
                             </td>
+                        </tr>
+                        <hr>
+                        <tr class="heading">
+                            <td>
+                                {{$website->puskesmas_name}} <br>
+                                Alamat : {{ $website->puskesmas_alamat }} <br>
+                                Email : {{ $website->puskesmas_email }} <br>
+                                No Telp : {{ $website->puskesmas_nohp }} <br>
+                            </td>
+
                         </tr>
                     </table>
                 </td>
